@@ -1,0 +1,264 @@
+:root{
+  --bg: #f2e7db;
+  --panel: #f6efe7;
+  --text: #2d221a;
+  --btn:#3b2c23;
+  --btn-hover:#241b15;
+  --shadow: 0 20px 40px rgba(0,0,0,.08);
+  --radius: 28px;
+
+  /* extras para salas */
+  --chip:#f0e7dc;
+  --modal-bg:#ffffff;
+
+  /* GUIABot overlay variables */
+  --gb-overlay: rgba(0,0,0,.65);
+  --gb-btn: rgba(0,0,0,.55);
+  --gb-image: url('images/portada.png'); /* se puede sobrescribir desde JS */
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 800px at 10% 50%, #d9c2aa 0%, transparent 60%),
+    var(--bg);
+}
+.hidden{display:none}
+
+.wrap{
+  max-width: 1200px;
+  margin: clamp(12px,3vw,40px) auto;
+  padding: clamp(8px,2.5vw,24px);
+}
+
+/* HERO */
+.hero{
+  background: var(--panel);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 0;
+  min-height: 540px;
+}
+.hero-media{ position: relative; isolation: isolate; display: grid; place-items: center; padding: clamp(10px,1.8vw,24px); }
+.hero-media .frame{ width: 100%; height: 100%; border-radius: 18px; overflow:hidden; position: relative; }
+.hero-media img{ width:100%; height:100%; object-fit: cover; display:block; transform: scale(1.03); }
+
+.hero-content{
+  padding: clamp(20px,4vw,48px);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap: clamp(14px,2.2vw,28px);
+  position: relative;
+}
+
+h1{
+  font-family: "Merriweather", serif;
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: .6px;
+  font-size: clamp(28px, 4vw, 56px);
+  margin:0;
+  text-wrap: balance;
+}
+
+.cta{
+  align-self: flex-start;
+  background: var(--btn);
+  color: #fff;
+  border: none;
+  font-weight: 800;
+  padding: 18px 26px;
+  border-radius: 16px;
+  font-size: clamp(16px,1.4vw,18px);
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0,0,0,.12);
+  transition: transform .06s ease, background .2s ease, box-shadow .2s ease;
+  text-decoration: none; /* para el <a> de la portada */
+  display: inline-block;
+}
+.cta:hover{ background: var(--btn-hover); box-shadow: 0 14px 24px rgba(0,0,0,.16); transform: translateY(-1px); }
+.cta:active{ transform: translateY(0); }
+
+.robot{
+  position: absolute;
+  right: clamp(18px,3vw,36px);
+  bottom: clamp(18px,2.4vw,30px);
+  width: clamp(80px,18vw,150px);
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,.18));
+  user-select:none;
+  pointer-events:none;
+}
+
+/* Tira de logos (home) */
+.brand-strip{
+  display:flex;
+  gap: clamp(18px,3vw,36px);
+  align-items:center;
+  justify-content: center;
+  padding: clamp(12px,2.2vw,18px);
+  margin-top: clamp(12px,2.2vw,18px);
+  background: #f0e7dc80;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+.brand-strip img{
+  height: clamp(34px,5vw,56px);
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.06));
+}
+
+/* --- Sección de salas --- */
+.salas { 
+  text-align: center; 
+  margin-top: 10px; 
+  background: var(--panel);
+  background-color: var(--bg); /* fallback */
+  background-image: url('images/Fondo_pag2.jpg');
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: clamp(80px,3vw,28px);
+}
+
+.salas h2 {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-size: clamp(24px, 3vw, 36px);
+  margin: 0 0 24px;
+}
+.cards-container{
+  display:flex; justify-content:center; flex-wrap:wrap; gap:20px;
+}
+.card{
+  background:#ffffff; border-radius:18px; box-shadow:0 10px 20px rgba(0,0,0,.12);
+  overflow:hidden; max-width:320px; transition:.2s ease; cursor:pointer;
+}
+.card:hover{ transform: translateY(-5px); box-shadow:0 15px 25px rgba(0,0,0,.16); }
+.card img{ width:100%; height:200px; object-fit:cover; }
+.card-info{ padding:16px; background:linear-gradient(to top, #5c4433, #b9a899); color:#fff; }
+.card-info h3{ margin:0 0 8px; font-size:18px; font-weight:700; }
+.card-info p{ margin:0; font-size:14px; }
+
+/* Helpers */
+.salas.show{ animation: fadeIn .35s ease-out both; }
+@keyframes fadeIn { from{ opacity:0; transform: translateY(8px);} to{ opacity:1; transform:none;} }
+
+/* Modal nativo <dialog> base */
+dialog{
+  border:0; border-radius:20px; padding:0; max-width:min(760px,94vw);
+  box-shadow: 0 24px 60px rgba(0,0,0,.25);
+}
+dialog::backdrop{ background: rgba(0,0,0,.45); }
+.modal{
+  display:grid; grid-template-columns: 320px 1fr; min-height:360px; background:var(--modal-bg);
+  border-radius:20px; overflow:hidden;
+}
+.modal img{ width:100%; height:100%; object-fit:cover; }
+.modal-body{ padding:22px; }
+.modal-body h2{ margin:0 0 6px; font-family:"Merriweather", serif; }
+.muted{ color:#6d635a; margin:0 0 12px; }
+.chips{ display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 18px; }
+.chip{ background:var(--chip); border-radius:999px; padding:8px 12px; font-size:13px; }
+.modal-actions{ display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap; }
+.btn{
+  cursor:pointer; border:0; border-radius:12px; background:var(--btn); color:#fff; 
+  padding:10px 14px; font-weight:700;
+}
+.btn.link{ background:#eee; color:#111; }
+
+/* Footer (para recorrido) */
+.brand-footer{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: clamp(24px, 6vw, 80px);
+  padding: clamp(10px, 2vw, 18px);
+  /* ↑ AUMENTAMOS EL ESPACIO SUPERIOR */
+  margin: clamp(48px, 9vh, 160px) clamp(12px, 3vw, 24px) clamp(12px, 3vw, 24px);
+  background: #f0e7dc80;
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  /* Contenedor más ancho solo en la página de salas */
+.wrap-wide{ max-width: 1400px; } /* súbelo a 1440px si quieres */
+
+}
+
+.brand-footer img{
+  height: clamp(34px, 5vw, 56px);
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(0,0,0,.06));
+}
+
+/* ===== Modal GUIABot: estilo propio con fondo de imagen ===== */
+.modal.guiabot-style{
+  position: relative;
+  /* Fondo para TODO el cuadro del modal */
+  background-image:
+    linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+    var(--gb-panel-image, url('images/portada.png'));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border-radius: 20px;
+  overflow: hidden;
+  color: #fff;
+  padding: 0;
+  box-shadow: 0 8px 30px rgba(0,0,0,.5);
+
+  /* tamaño y centrado del contenido */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: min(760px, 90vw);
+  height: min(400px, 82vh); 
+  text-align: center;
+}
+.modal.guiabot-style .modal-body{
+  position: relative;
+  z-index: 1;
+  padding: 32px;
+  width: 100%;
+  max-width: 680px;
+}
+.modal.guiabot-style h2{
+  font-size: clamp(22px, 3.8vw, 36px);
+  font-weight: 900;
+  margin: 0 0 12px;
+  text-align: center;
+  font-family:"Merriweather", serif;
+}
+.modal.guiabot-style .muted{ color: rgba(255,255,255,.88); margin-bottom: 24px; text-align:center; }
+.modal.guiabot-style .modal-actions{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+.modal.guiabot-style .btn{
+  background: rgba(255,255,255,0.92);
+  color:#111;
+  border: 2px solid rgba(255,255,255,.85);
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-weight: 800;
+  min-width: 200px;
+}
+.modal.guiabot-style .btn:hover{ background:#fff; border-color:#fff; }
+
+/* Responsivo */
+@media (max-width: 980px){
+  .hero{ grid-template-columns: 1fr; min-height: unset; }
+  .hero-content{ padding-top: 10px; }
+  .robot{ position: static; align-self: flex-end; margin-top: -6px; }
+  .modal{ grid-template-columns: 1fr; }
+  .modal img{ height: 220px; }
+}
+@media (max-width: 520px){
+  .brand-strip{ justify-content: space-between; }
+  .brand-strip img{ height: 40px; }
+}

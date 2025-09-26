@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Museo Regional de Guerrero — Recorrido</title>
+
+  <!-- Tipografías -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="wrap wrap-wide" aria-label="Recorrido del museo">
+
+    <!-- SECCIÓN SALAS (visible desde el inicio) -->
+    <section id="seccion-salas" class="salas" aria-live="polite" role="region" aria-labelledby="recorrido-titulo">
+      <h2 id="recorrido-titulo" tabindex="-1">Selecciona la sala que deseas visitar</h2>
+      <div id="cards" class="cards-container"><!-- se insertan por JS --></div>
+    </section>
+
+    <!-- Pie con logos -->
+    <footer class="brand-footer" aria-label="Organismos participantes">
+      <img src="images/logo_cultura.png" alt="Secretaría de Cultura">
+      <img src="images/logoINAH.png" alt="INAH">
+      <img src="images/segundo_logo.png" alt="Tecnológico Nacional de México">
+      <img src="images/logo web.png" alt="Instituto Tecnológico de Chilpancingo">
+    </footer>
+  </main>
+
+  <!-- MODAL PRINCIPAL -->
+  <dialog id="salaModal" aria-labelledby="modalTitle">
+    <div class="modal">
+      <img id="modalImg" src="" alt="Imagen de la sala seleccionada">
+      <div class="modal-body">
+        <h2 id="modalTitle">Sala</h2>
+        <p class="muted" id="modalMeta"></p>
+
+        <div>
+          <strong>Temas:</strong>
+          <div id="temas" class="chips"></div>
+        </div>
+
+        <div class="modal-actions">
+          <button id="openSala" class="btn link" type="button">Abrir sala</button>
+          <div style="display:flex; gap:8px">
+            <button id="prevSala" class="btn" type="button" aria-label="Sala anterior">◀</button>
+            <button id="nextSala" class="btn" type="button" aria-label="Sala siguiente">▶</button>
+            <form method="dialog">
+              <button class="btn" value="close" type="submit">Cerrar</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </dialog>
+
+  <!-- MODAL GUIABot (estilo propio con fondo de imagen) -->
+  <dialog id="guiabotDialog" aria-labelledby="gbTitle">
+    <div class="modal guiabot-style">
+      <div class="modal-body">
+        <h2 id="gbTitle">¿Deseas que el GUIABot te guíe?</h2>
+        <p class="muted">Elige una opción para continuar con el recorrido.</p>
+
+        <div class="modal-actions">
+          <button id="gbStart" class="btn" type="button">Iniciar recorrido con GUIABot</button>
+          <div style="display:flex; gap:8px">
+            <form method="dialog">
+              <button class="btn" value="close" type="submit">Regresar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Lógica solo de esta página -->
+  <script src="app-recorrido.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Museo Regional de Guerrero — Portada</title>
+
+  <!-- Tipografías -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="wrap" aria-label="Bienvenida al museo">
+    <!-- HERO (solo portada) -->
+    <section class="hero" role="region" aria-labelledby="titulo" id="hero">
+      <div class="hero-media">
+        <figure class="frame">
+          <img src="images/portada.png" alt="Fachada del Museo Regional de Guerrero con un gran árbol al frente">
+        </figure>
+      </div>
+
+      <div class="hero-content">
+        <h1 id="titulo">
+          ¡BIENVENIDO AL<br>
+          MUSEO REGIONAL<br>
+          DE GUERRERO!
+        </h1>
+
+        <!-- CTA: lleva a la página de recorrido -->
+        <button id="btn-recorrido" class="cta" type="button">
+  Comienza tu recorrido con<br> GUIABot
+</button>
+
+<script>
+  document.getElementById('btn-recorrido')?.addEventListener('click', () => {
+    window.location.href = 'recorrido.html';
+  });
+</script>
+
+
+        <img class="robot" src="images/carrito.png" alt="" aria-hidden="true">
+      </div>
+    </section>
+
+    <div class="back-button">
+  <a href="index.html">
+    &#8592; Regresar
+  </a>
+</div>
+
+    <!-- LOGOS (portada) -->
+    <div class="brand-strip" aria-label="Organismos participantes">
+      <img src="images/logo_cultura.png" alt="Secretaría de Cultura">
+      <img src="images/logoINAH.png" alt="INAH">
+      <img src="images/segundo_logo.png" alt="Tecnológico Nacional de México">
+      <img src="images/logo web.png" alt="Instituto Tecnológico de Chilpancingo">
+    </div>
+  </main>
+</body>
+</html>
